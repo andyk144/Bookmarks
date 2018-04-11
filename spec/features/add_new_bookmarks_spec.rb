@@ -23,4 +23,12 @@ feature "add a new bookmark" do
     expect(page).to have_content "http://test.com"
 
   end
+
+  scenario "A user enters an invalid URL" do
+    visit "/"
+    click_button 'Add New Bookmark'
+    fill_in('url', with: 'http://orange')
+    expect(page).to have_content "Error - invalid url input"
+
+  end
 end
