@@ -2,8 +2,6 @@ require 'sinatra/base'
 require './lib/bookmark'
 
 class BookmarkManager < Sinatra::Base
-enable :sessions
-
 
   get '/' do
     erb :index
@@ -19,14 +17,14 @@ enable :sessions
   end
 
   post '/add' do
-    session[:url] = params[:url]
-    redirect '/success'
+    Bookmark.create(params[:url])
+    redirect '/'
   end
 
-  get '/success' do
-    @url = session[:url]
-    erb :success
-  end
+  # get '/success' do
+  #   Bookmark.create(params[:url])
+  #   erb :success
+  # end
 
   run! if app_file == $0
 end
