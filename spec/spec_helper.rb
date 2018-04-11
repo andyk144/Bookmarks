@@ -12,7 +12,8 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
-ENV['RACK_ENV'] = 'test'
+ENV['ENVIRONMENT'] = 'test'
+# ENV['RACK_ENV'] = 'test'
 
 # require our Sinatra app file
 require './app/app.rb'
@@ -24,6 +25,10 @@ require 'rspec'
 Capybara.app = BookmarkManager
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+  config.before(:each) do
+    require_relative './setup_test_database'
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -45,6 +50,10 @@ RSpec.configure do |config|
     # a real object. This is generally recommended, and will default to
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
+  end
+
+  config.before(:each) do
+    require_relative './setup_test_database'
   end
 
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
