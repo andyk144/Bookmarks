@@ -14,4 +14,6 @@ describe Bookmark do
       expect(Bookmark.all).to eq expected_list
     end
   end
+
+  describe "."
 end
