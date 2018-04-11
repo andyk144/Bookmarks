@@ -1,7 +1,12 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require './lib/bookmark'
 
+
 class BookmarkManager < Sinatra::Base
+  enable :sessions
+  register Sinatra::Flash
+
 
   get '/' do
     erb :index
@@ -17,7 +22,11 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/add' do
-    Bookmark.create(params[:url])
+    if Bookmark.create(params[:url])
+      flash[:message] = "#{params[:url]} was successfully added to your bookmarks list"
+    else
+      flash[:message] = "Invalid url input - please try again"
+    end
     redirect '/'
   end
 

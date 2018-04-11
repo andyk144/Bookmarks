@@ -30,4 +30,16 @@ describe Bookmark do
 
     end
   end
+
+  describe ".url_valid?" do
+    it 'accepts a vaild url' do
+      url = "http://test.co.uk"
+      expect(Bookmark.valid_url?(url)).to be_truthy
+    end
+
+    it 'rejects a invalid url' do
+      url = "http://dsfkjbfvkhjbdfv"
+      expect(Bookmark.valid_url?(url)).to be_falsy
+    end
+  end
 end

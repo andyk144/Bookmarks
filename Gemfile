@@ -13,4 +13,5 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rack'
   gem 'pg'
+  gem 'sinatra-flash'
 end

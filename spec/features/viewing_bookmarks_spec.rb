@@ -2,7 +2,7 @@ require "capybara/rspec"
 require "./app/app"
 
 
-feature "add a new bookmark" do
+feature "View a list of bookmarks" do
   scenario "A user sees a list of their bookmarks" do
     connection = PG.connect(dbname: 'bookmark_manager_test')
 
