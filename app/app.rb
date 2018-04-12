@@ -30,10 +30,5 @@ class BookmarkManager < Sinatra::Base
     redirect '/'
   end
 
-  # get '/success' do
-  #   Bookmark.create(params[:url])
-  #   erb :success
-  # end
-
   run! if app_file == $0
 end

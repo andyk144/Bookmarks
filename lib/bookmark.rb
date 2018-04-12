@@ -20,7 +20,7 @@ class Bookmark
     end
     if valid_url?(url)
       connection.exec("INSERT INTO bookmarks (url) VALUES('#{url}')")
-      true
+      # true
     else
       false
     end
