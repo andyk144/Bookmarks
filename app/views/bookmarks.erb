@@ -1,5 +1,9 @@
-<div>
-<%= @bookmarks %>
-</div>
-
-<%= flash[:message] %>
+<ul>
+  <% @bookmarks.each do |bookmark| %>
+  <li>
+    <a href="<%= bookmark.url %>">
+      <%= bookmark.name %>
+    </a>
+  </li>
+  <% end %>
+</ul>
