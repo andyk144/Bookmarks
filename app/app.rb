@@ -22,7 +22,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/add' do
-    if Bookmark.create(params[:url])
+    if Bookmark.create(params[:url], params[:bookmark_name])
       flash[:message] = "#{params[:url]} was successfully added to your bookmarks list"
     else
       flash[:message] = "Invalid url input - please try again"

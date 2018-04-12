@@ -6,9 +6,9 @@ describe Bookmark do
     it 'returns all bookmarks' do
       connection = PG.connect(dbname: 'bookmark_manager_test')
 
-      connection.exec("INSERT INTO bookmarks (url) VALUES('http://facebook.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES('http://twitter.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES('http://instagram.com');")
+      connection.exec("INSERT INTO bookmarks (url, name) VALUES('http://facebook.com', 'Facebook');")
+      connection.exec("INSERT INTO bookmarks (url, name) VALUES('http://twitter.com', 'Twitter');")
+      connection.exec("INSERT INTO bookmarks (url, name) VALUES('http://instagram.com', 'Instagram');")
 
       expected_list = ['http://facebook.com', 'http://twitter.com', 'http://instagram.com']
       expect(Bookmark.all).to eq expected_list
@@ -19,11 +19,11 @@ describe Bookmark do
     it 'adds a bookmark' do
       connection = PG.connect(dbname: 'bookmark_manager_test')
 
-      connection.exec("INSERT INTO bookmarks (url) VALUES('http://facebook.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES('http://twitter.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES('http://instagram.com');")
+      connection.exec("INSERT INTO bookmarks (url, name) VALUES('http://facebook.com', 'Facebook');")
+      connection.exec("INSERT INTO bookmarks (url, name) VALUES('http://twitter.com', 'Twitter');")
+      connection.exec("INSERT INTO bookmarks (url, name) VALUES('http://instagram.com', 'Instagram');")
 
-      Bookmark.create("http://stackoverflow.com")
+      Bookmark.create("http://stackoverflow.com", "StackOverflow")
       expected_list = ['http://facebook.com', 'http://twitter.com', 'http://instagram.com', 'http://stackoverflow.com']
 
       expect(Bookmark.all).to eq expected_list
