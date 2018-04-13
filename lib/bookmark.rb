@@ -35,4 +35,15 @@ class Bookmark
     connection.exec("DELETE FROM bookmarks WHERE id='#{id}'")
   end
 
+  def self.find(name)
+    connection = Database::connect
+    row = connection.exec("SELECT * FROM bookmarks")
+    if row.column_values(2).include?(name)
+      connection.exec("SELECT * FROM bookmarks WHERE name='#{name}'")
+    else
+      return false
+    end
+  end
+
+
 end

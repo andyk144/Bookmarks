@@ -1,6 +1,7 @@
 <ul>
   <% @bookmarks.each do |bookmark| %>
   <li>
+    <%= bookmark.id %>
     <a href="<%= bookmark.url %>">
       <%= bookmark.name %>
     </a>

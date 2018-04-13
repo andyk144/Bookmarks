@@ -36,5 +36,11 @@ class BookmarkManager < Sinatra::Base
     redirect '/bookmarks'
   end
 
+  get '/find' do
+      @result = Bookmark.find(params[:bookmark_name])
+
+    erb :find
+  end
+
   run! if app_file == $0
 end

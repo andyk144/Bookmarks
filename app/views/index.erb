@@ -8,4 +8,9 @@
   <input type="submit" value="Add New Bookmark">
 </form>
 
+<form name="input" action="/find" method="get" >
+  Bookmark Name: <input type="text" name="bookmark_name">
+  <input type="submit" value="Search">
+</form>
+
 <%= flash[:message] %>
