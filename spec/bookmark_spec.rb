@@ -14,7 +14,7 @@ describe Bookmark do
     end
   end
 
-  let(:subject) { described_class.new(1,'http://google.com', 'google')}
+  let(:subject) { described_class.new(id: 1, url: 'http://google.com', name: 'google')}
 
   describe 'url' do
     it 'shows the url' do
@@ -31,7 +31,7 @@ describe Bookmark do
   describe 'id' do
     it 'shows the id of given to the bookmark' do
       expect(subject.id).to eq 1
-    
+
     end
   end
 
