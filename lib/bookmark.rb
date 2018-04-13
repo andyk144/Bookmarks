@@ -1,4 +1,5 @@
 require 'pg'
+require 'database'
 
 class Bookmark
   attr_reader :id, :url, :name
@@ -10,24 +11,15 @@ class Bookmark
   end
 
   def self.all
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'bookmark_manager_test')
-    else
-      connection = PG.connect(dbname: 'bookmark_manager')
-    end
+    connection = Database::connect
     results = connection.exec("SELECT * FROM bookmarks")
     results.map { |bookmark| Bookmark.new(bookmark['id'], bookmark['url'], bookmark['name'])}
   end
 
   def self.create(url,name)
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'bookmark_manager_test')
-    else
-      connection = PG.connect(dbname: 'bookmark_manager')
-    end
+    connection = Database::connect
     if valid_url?(url)
-      result = connection.exec("INSERT INTO bookmarks (url,name) VALUES('#{url}', '#{name}') RETURNING id, url, name")
-      Bookmark.new(result.first['id'], result.first['url'], result.first['name'])
+      connection.exec("INSERT INTO bookmarks (url,name) VALUES('#{url}', '#{name}')")
     else
       false
     end
@@ -38,15 +30,4 @@ class Bookmark
     url =~ url_regexp ? true : false
   end
 
-  # def add_to_db(url, name)
-  #   if ENV['ENVIRONMENT'] == 'test'
-  #     connection = PG.connect(dbname: 'bookmark_manager_test')
-  #   else
-  #     connection = PG.connect(dbname: 'bookmark_manager')
-  #   end
-  #   if valid_url?(url)
-  #     results = db.exec("INSERT INTO bookmarks (url,name) VALUES ('#{url}', '#{name}')")
-  #   else
-  #     false
-  #   end
 end

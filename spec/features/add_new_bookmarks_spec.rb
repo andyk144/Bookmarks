@@ -18,17 +18,17 @@ feature "add a new bookmark" do
     click_button 'Add'
     click_button 'Bookmarks'
 
-    expect(page).to have_content "http://facebook.com"
-    expect(page).to have_content "http://twitter.com"
-    expect(page).to have_content "http://instagram.com"
-    expect(page).to have_content "http://test.com"
+    expect(page).to have_content "Facebook"
+    expect(page).to have_content "Twitter"
+    expect(page).to have_content "Instagram"
+    expect(page).to have_content "Test"
   end
 
   scenario "A user enters an invalid URL and see's an error message" do
     visit "/"
     click_button 'Add New Bookmark'
     fill_in('url', with: 'http://orange')
-    fill_in('name', with: 'Orange')
+    fill_in('bookmark_name', with: 'Orange')
     click_button 'Add'
     expect(page).to have_content "Invalid url input - please try again"
   end

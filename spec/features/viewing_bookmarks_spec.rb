@@ -14,8 +14,8 @@ feature "View a list of bookmarks" do
 
     click_button 'Bookmarks'
 
-    expect(page).to have_content "http://facebook.com"
-    expect(page).to have_content "http://twitter.com"
-    expect(page).to have_content "http://instagram.com"
+    expect(page).to have_content "Facebook"
+    expect(page).to have_content "Twitter"
+    expect(page).to have_content "Instagram"
   end
 end
